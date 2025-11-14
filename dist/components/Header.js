@@ -1,0 +1,20 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const jsx_runtime_1 = require("react/jsx-runtime");
+const react_1 = require("react");
+const NavLink = ({ href, children, onClick }) => ((0, jsx_runtime_1.jsx)("a", { href: href, onClick: onClick, className: "font-mono uppercase tracking-widest text-sm px-3 py-2 border-b-2 border-transparent hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-300", children: children }));
+const Header = ({ isDarkMode, toggleDarkMode }) => {
+    const [isOpen, setIsOpen] = (0, react_1.useState)(false);
+    (0, react_1.useEffect)(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsOpen(false);
+            }
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    const closeMenu = () => setIsOpen(false);
+    return ((0, jsx_runtime_1.jsxs)("header", { className: "fixed top-0 left-0 w-full z-40 bg-[var(--bg-color)]/80 backdrop-blur-sm border-b border-[var(--border-color)]", children: [(0, jsx_runtime_1.jsx)("div", { className: "container mx-auto px-4 sm:px-6 lg:px-8", children: (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center justify-between h-16", children: [(0, jsx_runtime_1.jsx)("a", { href: "#", onClick: closeMenu, className: "text-xl font-bold font-mono tracking-tighter text-[var(--accent-color)]", children: "NEON_TOKYO.DEV>" }), (0, jsx_runtime_1.jsxs)("nav", { className: "hidden md:flex items-center space-x-4", children: [(0, jsx_runtime_1.jsx)(NavLink, { href: "#", onClick: closeMenu, children: "// Home" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#about", onClick: closeMenu, children: "// About" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#projects", onClick: closeMenu, children: "// Projects" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#contact", onClick: closeMenu, children: "// Contact" })] }), (0, jsx_runtime_1.jsxs)("div", { className: "flex items-center", children: [(0, jsx_runtime_1.jsx)("button", { onClick: toggleDarkMode, className: "w-12 h-6 rounded-full p-1 bg-gray-600 dark:bg-gray-800 relative transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]", "aria-label": "Toggle dark mode", children: (0, jsx_runtime_1.jsx)("span", { className: `absolute left-1 top-1 w-4 h-4 rounded-full bg-white dark:bg-gray-400 transition-transform duration-300 ease-in-out ${isDarkMode ? "transform translate-x-6" : ""}` }) }), (0, jsx_runtime_1.jsx)("div", { className: "md:hidden ml-4", children: (0, jsx_runtime_1.jsx)("button", { onClick: () => setIsOpen(!isOpen), className: "text-[var(--text-color)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)]", "aria-expanded": isOpen, "aria-controls": "mobile-menu", children: (0, jsx_runtime_1.jsx)("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg", children: isOpen ? ((0, jsx_runtime_1.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M6 18L18 6M6 6l12 12" })) : ((0, jsx_runtime_1.jsx)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16m-7 6h7" })) }) }) })] })] }) }), (0, jsx_runtime_1.jsx)("div", { id: "mobile-menu", className: `md:hidden ${isOpen ? "block" : "hidden"} bg-[var(--bg-color)]/95 backdrop-blur-sm`, children: (0, jsx_runtime_1.jsxs)("div", { className: "px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center", children: [(0, jsx_runtime_1.jsx)(NavLink, { href: "#", onClick: closeMenu, children: "// Home" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#about", onClick: closeMenu, children: "// About" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#projects", onClick: closeMenu, children: "// Projects" }), (0, jsx_runtime_1.jsx)(NavLink, { href: "#contact", onClick: closeMenu, children: "// Contact" })] }) })] }));
+};
+exports.default = Header;
